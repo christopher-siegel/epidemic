@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Epidemic - Forecasting Disease Spreading</title>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+
+    <link href="https://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <!-- I recommend you host this file on your own, since this will change without warning -->
+    <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+
+    <!--bootstrap CSS v1 BEGINS here-->
+
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    -->
+    <!-- Optional theme -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    -->
+    <!-- Latest compiled and minified JavaScript -->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    -->
+    <!--bootstrap CSS v1 ENDS here-->
+
+    <!-- bootstrap CSS v2 BEGINS here-->
+    <!-- Bootstrap Core CSS -->
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet">-->
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- bootstrap CSS v2 ENDS here-->
+
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+                <div class="navbar navbar-inverse" style="margin-bottom: 0px;">
+                    <div class="container" style="margin-left: 0px;">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">EPIDEMIC</a>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--/.nav-collapse -->
+                    </div>
+                </div>
+
+        <div id="page-wrapper" class="container">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Predicting the Global Spread of Influenza
+                        </h1>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="well">
+                          <p>EPIDEMIC uses airline transportation data as well as global data on current disease incidences to predict the infection journey of global epidemics. For this purpose a metapopulation model is used to allow for realtime forecasting of geographic spread.</p>
+                      </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+                <!-- <div class="row">
+                    <div class="col-lg-12">
+                      <div class="alert alert-success">
+                          <strong>Select data:</strong> Adjust the displayed point in time with the slider below the chart.
+                      </div>
+                    </div>
+                </div> -->
+                <!-- /.row -->
+
+
+
+                <div class="row">
+
+                    <!-- beginning of map -->
+
+                    <div class="col-lg-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                            </div>
+                            <div class="panel-body">
+                                <!-- <div id="morris-area-chart"> -->
+                                  <!-- <div class="container"> -->
+                                    <div id="container1"></div>
+
+                                  <!-- </div> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- end of map -->
+
+                    <div class="col-lg-4">
+
+                        <!-- beginning of most infected ranking -->
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Most Infected Countries</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Country</th>
+                                                <th>Infection Score</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Botswana</td>
+                                                <td>117</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Bangladesh</td>
+                                                <td>115</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Uruguay</td>
+                                                <td>112</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Brazil</td>
+                                                <td>110</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Kenia</td>
+                                                <td>109</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- end of most infected ranking -->
+
+                        <!-- beginning of infection level legend -->
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Infection Degrees</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">just now</span>
+                                        <i class="fa fa-fw fa-calendar"></i> Raplace item with color bar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- end of infection level legend-->
+
+                        <!-- beginning of certainty score -->
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Estimated Prediction Accuracy</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <span class="badge">just now</span>
+                                        <i class="fa fa-fw fa-calendar"></i> Raplace item with certainty score
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- end of certainty score-->
+
+                    </div>
+                </div>
+                <!-- /.row -->
+
+
+                <!-- begin of slider -->
+                <div class="row">
+                    <div class="col-lg-12">
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Timespan Selector</h3>
+                        </div>
+                        <div class="panel-body" style="height: 50px; padding-left: 30px; padding-right: 120px; padding-top: 30px; padding-bottom: 45px;">
+                          <div id="slider">
+                            <div id="custom-handle" class="ui-slider-handle"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- /.row end of slider -->
+                <br><br><br>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+        <footer style="margin-left: 0px; background-color: #222; color: white; text-align: center; padding: 20px;">
+          <p>A HackZurich 2016 project.</p>
+          <p>Hacked with &hearts; by Team EPIDEMIC. All rights reserved.</p>
+        </footer>
+        <!-- Footer -->
+
+    </div>
+    <!-- /#wrapper -->
+
+  <script>
+       //basic map config with custom fills, mercator projection
+      var map = new Datamap({
+        scope: 'world',
+        element: document.getElementById('container1'),
+        projection: 'mercator',
+        height: 500,
+        fills: {
+          defaultFill: '#f0af0a',
+          lt50: 'rgba(0,244,244,0.9)',
+          gt50: 'red'
+        },
+         geographyConfig: {
+          borderWidth: 1,
+          borderOpacity: 1,
+          borderColor: '#999',
+          popupTemplate: function(geography, data) { // This function should just return a string
+            return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Rate:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
+          }
+         },
+
+        data: {
+          USA: {fillKey: 'lt50' },
+          RUS: {fillKey: 'lt50' },
+          CAN: {fillKey: 'lt50' },
+          BRA: {fillKey: 'gt50' },
+          ARG: {fillKey: 'gt50'},
+          COL: {fillKey: 'gt50' },
+          AUS: {fillKey: 'gt50' },
+          ZAF: {fillKey: 'gt50' },
+          MAD: {fillKey: 'gt50' }
+        },
+
+        blub: function() {
+          console.log("hello");
+          return "hello";
+        }
+      })
+
+      $( document ).ready(function() {
+
+      var handle = $( "#custom-handle" );
+      $( "#slider" ).slider({
+          create: function() {
+            handle.text( $( this ).slider( "value" ) );
+          },
+          slide: function( event, ui ) {
+            handle.text( "Week: #" + ui.value );
+            map.updateChoropleth({RUS: 'rgba(255,0,0,'+ui.value/100+')'});
+          }
+        });
+      });
+
+     </script>
+
+
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCwehYOGF9eSo_pU0Dt5S5OA0aWBZEbLXs",
+        authDomain: "epidemic-3898d.firebaseapp.com",
+        databaseURL: "https://epidemic-3898d.firebaseio.com",
+        storageBucket: "epidemic-3898d.appspot.com",
+        messagingSenderId: "198266906543"
+      };
+      firebase.initializeApp(config);
+
+      console.log(firebase);
+
+        $( document ).ready(function() {
+          // Get a database reference to our posts
+            var ref = firebase.database().ref();
+            // Attach an asynchronous callback to read the data at our posts reference
+            ref.on("value", function(snapshot) {
+              console.log(snapshot.val());
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+        });
+    </script> -->
+</body>
+</html>
