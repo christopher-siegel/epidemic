@@ -165,6 +165,7 @@ read_data <- function(){
 #===================================
 load(file='infections.Rda')
 load(file='flights.Rda')
+n_t_predict <- 52-36
 #===================================
 # Build empty nodes
 #===================================
@@ -219,20 +220,14 @@ update_state <- function(state, t, F, alpha, beta){
      #j - node
      #t - time instance 
     
-    #if (t==1){
-    #state[[j]]$n_m[1] <-
-    #  state[[j]]$s_m[1] <-
-    #  state[[j]]$i_m[1] <-
-    #} else {}
-    
     state[[j]]$n_m[t] <-  state[[j]]$n_m[t-1] + sum(F[,j,t-1]) - sum(F[j,,t-1])
     
     help_sum <- 0
     for (k in 1:n_nodes){
        help_sum <- help_sum + F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1]
-       print(paste(k, ' ',F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1],' ',help_sum, sep=''))
+       #print(paste(k, ' ',F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1],' ',help_sum, sep=''))
     }
-    help_sum
+    #help_sum
     
    state[[j]]$i_m[t] <- state[[j]]$i_m[t-1]+
                         alpha* state[[j]]$s_m[t-1]/state[[j]]$n_m[t-1]*(state[[j]]$i_m[t-1]+help_sum) -
@@ -247,8 +242,6 @@ update_state <- function(state, t, F, alpha, beta){
   state[[j]]$n_m[t]  <- max(state[[j]]$n_m[t], 0)
   state[[j]]$i_m[t]  <- max(state[[j]]$i_m[t], 0)
   state[[j]]$s_m[t]  <- max(state[[j]]$s_m[t], 0)
-  
-  state[[j]]
   }
   return(state)
 }
@@ -268,9 +261,9 @@ param_grid$score <- rep(NA,length.out)
 
 cost_function <- function(state1, alpha, beta){
   #starting from state1 update according to the dynamics
-  #for (t in 2:n_t){
-  for (t in 2:10){
-    state <- update_state(state1, t, F, alpha, beta)
+  state <- state1
+  for (t in 2:n_t){
+    state <- update_state(state, t, F, alpha, beta)
   }
   
   cost <- 0
@@ -291,6 +284,10 @@ beta_opt <- param_grid$beta[which(param_grid$score == min(param_grid$score))]
 alpha_opt
 beta_opt
 
+#===================================
+# prediction
+#===================================
+
 
 output <- data.frame(country = c(countries$code[1:20]), week= sample(52,20, replace=T), infected_number= sample(100,20, replace=T), infected_percentage= sample(10,20, replace=T)/1000)
-write.table(output, file = "")
+write.table(output, file = "/Users/semenova/Dropbox/HackZurich2016/comm/epidemic/magic/R_output.csv")
