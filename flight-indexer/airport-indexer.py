@@ -5,15 +5,6 @@ import os
 #Skyscanner
 SKYSCANNER_API_KEY = "prtl6749387986743898559646983194"
 SKYSCANNER_SERVICE_URL = "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/"#GB/GBP/en-GB/UK/anywhere/anytime/anytime?apiKey=" + apiKey;
-# SKYSCANNER_SERVICE_URL = "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/GB/GBP/en-GB/UK/anywhere/anytime/anytime?apiKey=prtl6749387986743898559646983194"
-#Firebase
-# FIREBASE_DATABASE_NAME = "diseasesprecondition"
-# FIREBASE_BASE_URL = "https://diseasesprecondition.firebaseio.com"
-#FIREBASE_API_KEY = "AIzaSyB8bipA_WgkGx0MypqiJRe8MFE5nSnRHfw" #"AIzaSyBjDrKtbqoJmfEwxJ0EZMv8Drw8AFjzgQ0"
-#FIREBASE_USER_NAME = "diseaseshackzurich2016@hackhackshakeshake.com"
-#FIREBASE_USER_PW = "shakemakedrinkthink"
-# FIREBASE_PRINT_MODE = "pretty"
-# FIREBASE_PRINT_MODE = "silent"
 CSV_FILE_NAME = "flights.csv"
 
 class Flight:
@@ -134,35 +125,5 @@ def checkJsonKeyExists(json, key):
     return True if key in json else False
 
 
-###################### Firebase stuff
 
-# from firebase import firebase
-# from firebase import FirebaseAuthentication
-# from firebase import FirebaseApplication
-# from firebase import jsonutil
-
-# global fbase, will be setup once, so we don't neet to login for every time'
-# fBase = FirebaseApplication(FIREBASE_BASE_URL)    
-
-# def indexModelOnFirebase(model):  
-#     result = fBase.put('/' + "asas","awesomename", model)
-#     print(result)
-
-
-# ####################### Tests stuff
-# getFlightData("UK","CH", "2016-09-17", "2016-09-24") #-> http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0//GB/GBP/en-GB/UK/CH/2016-09-17/2016-09-24?apiKey=prtl6749387986743898559646983194
-# testModel = "{bam: [{hello:BAM_PYTHON__INDEX5253223}]}"
-# jsonModel = json.dumps(testModel, cls=jsonutil.JSONEncoder)
-# print(jsonModel)
-# indexModelOnFirebase(testModel)
-
-
-
-# testModel = Flight()
-# testModel.fromDest = "bam"
-# testModel.toDest = "bam"
-# testModel.week = 2
-# testModel.year = 2001
-# testModel.passengers = 22
-# writeModelToCSV(testModel)
 main()
