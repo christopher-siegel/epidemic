@@ -7,11 +7,40 @@
 
 
 #custom-handle {
-    width: 110px;
+    width: 70px;
     padding: 5px;
     height: 30px;
 }
 
+#red0 {
+  background-color: rgba(255,51,51,0.05);
+  text-align: center;
+}
+
+#red20 {
+  background-color: rgba(255,51,51,0.2);
+  text-align: center;
+}
+
+#red40 {
+  background-color: rgba(255,51,51,0.4);
+  text-align: center;
+}
+
+#red60 {
+  background-color: rgba(255,51,51,0.6);
+  text-align: center;
+}
+
+#red80 {
+  background-color: rgba(255,51,51,0.8);
+  text-align: center;
+}
+
+#red100 {
+  background-color: rgba(255,51,51,0.95);
+  text-align: center;
+}
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
