@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Epidemic</title>
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <link href="https://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <!-- I recommend you host this file on your own, since this will change without warning -->
+    <script src="http://datamaps.github.io/scripts/datamaps.world.min.js?v=1"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+
+<div class="container">
+  <h2>Prediction on the Spread of Influenzia caused by global aviation</h2>
+  <p>Examining the airline transportation network data and running a metapopulation model on that complex network to  allow realtime forecasting of geographic spread.</p>
+    <br>
+  <div id="container1"></div>
+
+  <br><br><br>
+
+  <div id="slider">
+    <div id="custom-handle" class="ui-slider-handle"></div>
+  </div>
+
+</div>
+
+  <script>
+       //basic map config with custom fills, mercator projection
+      var map = new Datamap({
+        scope: 'world',
+        element: document.getElementById('container1'),
+        projection: 'mercator',
+        height: 500,
+        fills: {
+          defaultFill: '#f0af0a',
+          lt50: 'rgba(0,244,244,0.9)',
+          gt50: 'red'
+        },
+         geographyConfig: {
+          borderWidth: 1,
+          borderOpacity: 1,
+          borderColor: '#999',
+          popupTemplate: function(geography, data) { // This function should just return a string
+            return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Rate:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
+          }
+         },
+
+        data: {
+          USA: {fillKey: 'lt50' },
+          RUS: {fillKey: 'lt50' },
+          CAN: {fillKey: 'lt50' },
+          BRA: {fillKey: 'gt50' },
+          ARG: {fillKey: 'gt50'},
+          COL: {fillKey: 'gt50' },
+          AUS: {fillKey: 'gt50' },
+          ZAF: {fillKey: 'gt50' },
+          MAD: {fillKey: 'gt50' }
+        },
+
+        blub: function() {
+          console.log("hello");
+          return "hello";
+        }
+      })
+
+      $( document ).ready(function() {
+
+      var handle = $( "#custom-handle" );
+      $( "#slider" ).slider({
+          create: function() {
+            handle.text( $( this ).slider( "value" ) );
+          },
+          slide: function( event, ui ) {
+            handle.text( "Woche #" + ui.value );
+            map.updateChoropleth({RUS: 'rgba(255,0,0,'+ui.value/100+')'});
+          }
+        });
+      });
+
+
+
+
+     </script>
+
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCwehYOGF9eSo_pU0Dt5S5OA0aWBZEbLXs",
+        authDomain: "epidemic-3898d.firebaseapp.com",
+        databaseURL: "https://epidemic-3898d.firebaseio.com",
+        storageBucket: "epidemic-3898d.appspot.com",
+        messagingSenderId: "198266906543"
+      };
+      firebase.initializeApp(config);
+
+      console.log(firebase);
+
+        $( document ).ready(function() {
+          // Get a database reference to our posts
+            var ref = firebase.database().ref();
+            // Attach an asynchronous callback to read the data at our posts reference
+            ref.on("value", function(snapshot) {
+              console.log(snapshot.val());
+            }, function (errorObject) {
+              console.log("The read failed: " + errorObject.code);
+            });
+        });
+    </script>
+</body>
+</html>

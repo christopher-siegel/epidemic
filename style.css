@@ -1,0 +1,13 @@
+
+#container1 {
+    position: relative;
+    width: 70%;
+    margin: 0px auto;
+}
+
+
+#custom-handle {
+    width: 110px;
+    padding: 5px;
+    height: 30px;
+}
