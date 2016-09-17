@@ -1,0 +1,116 @@
+import requests
+# import json
+####################### GLOBALS
+#Skyscanner
+SKYSCANNER_API_KEY = "prtl6749387986743898559646983194"
+SKYSCANNER_SERVICE_URL = "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/" #GB/GBP/en-GB/UK/anywhere/anytime/anytime?apiKey=" + apiKey;
+
+#Firebase
+# FIREBASE_DATABASE_NAME = "diseasesprecondition"
+# FIREBASE_BASE_URL = "https://diseasesprecondition.firebaseio.com"
+#FIREBASE_API_KEY = "AIzaSyB8bipA_WgkGx0MypqiJRe8MFE5nSnRHfw" #"AIzaSyBjDrKtbqoJmfEwxJ0EZMv8Drw8AFjzgQ0"
+#FIREBASE_USER_NAME = "diseaseshackzurich2016@hackhackshakeshake.com"
+#FIREBASE_USER_PW = "shakemakedrinkthink"
+# FIREBASE_PRINT_MODE = "pretty"
+# FIREBASE_PRINT_MODE = "silent"
+
+####################### Skyscanner stuff
+def getFlightData(fromCountry, toCountry, fromDate, toDate):
+    serviceURL = createServiceURL(fromCountry, toCountry, fromDate, toDate)
+    json = responseForRequestService(serviceURL)
+    print(json)
+
+
+def createServiceURL(fromCountry, toCountry, fromDate, toDate):
+    return (SKYSCANNER_SERVICE_URL + "/GB/GBP/en-GB/" + fromCountry + "/" + toCountry + "/" + fromDate + "/" + toDate + "?apiKey=" + SKYSCANNER_API_KEY + "&print=" + FIREBASE_PRINT_MODE)
+
+def responseForRequestService(serviceURL):
+    #load local mock json
+    #with open("skyscanner-flights.json") as jsonFile:
+    #    response  = json.load(jsonFile)
+    #    return response
+    r = requests.get(serviceURL)
+    return r.content
+
+
+#Storing stuff
+import csv
+
+class Flight:
+    fromDest = ""
+    toDest = ""
+    week = 0
+    year = 0
+    passengers = 0
+
+
+CSV_FILE_NAME = "flights.csv"
+CSV_HEADER_FROM = "from"
+CSV_HEADER_TO = "to"
+CSV_HEADER_WEEK = "week"
+CSV_HEADER_YEAR = "year"
+CSV_HEADER_PASSENGER = "passengers"
+
+CSV_HEADER = [
+    CSV_HEADER_FROM, 
+    CSV_HEADER_TO,
+    CSV_HEADER_WEEK, 
+    CSV_HEADER_YEAR, 
+    CSV_HEADER_PASSENGER
+    ]
+
+CSVFile = open(CSV_FILE_NAME, 'w')
+writer = csv.DictWriter(CSVFile, fieldnames=CSV_HEADER)
+writer.writeheader()
+
+def writeModelToCSV(model):
+    jsonModel = makeJSONModel(model)
+    writer.writerow(jsonModel)    
+    
+
+
+
+###################### HELPERS
+def makeJSONModel(model):
+    return {
+        CSV_HEADER_FROM: model.fromDest, 
+        CSV_HEADER_TO: model.toDest, 
+        CSV_HEADER_WEEK : model.week,
+        CSV_HEADER_YEAR: model.year,
+        CSV_HEADER_PASSENGER : model.passengers
+    }
+
+
+
+
+###################### Firebase stuff
+
+# from firebase import firebase
+# from firebase import FirebaseAuthentication
+# from firebase import FirebaseApplication
+# from firebase import jsonutil
+
+# global fbase, will be setup once, so we don't neet to login for every time'
+# fBase = FirebaseApplication(FIREBASE_BASE_URL)    
+
+# def indexModelOnFirebase(model):  
+#     result = fBase.put('/' + "asas","awesomename", model)
+#     print(result)
+
+
+# ####################### Tests stuff
+# getFlightData("UK","CH", "2016-09-17", "2016-09-24") #-> http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0//GB/GBP/en-GB/UK/CH/2016-09-17/2016-09-24?apiKey=prtl6749387986743898559646983194
+# testModel = "{bam: [{hello:BAM_PYTHON__INDEX5253223}]}"
+# jsonModel = json.dumps(testModel, cls=jsonutil.JSONEncoder)
+# print(jsonModel)
+# indexModelOnFirebase(testModel)
+
+
+
+testModel = Flight()
+testModel.fromDest = "bam"
+testModel.toDest = "bam"
+testModel.week = 2
+testModel.year = 2001
+testModel.passengers = 22
+writeModelToCSV(testModel)

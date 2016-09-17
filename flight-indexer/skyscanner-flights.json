@@ -1,0 +1,82 @@
+{
+  "Routes": [
+    {
+      "OriginId": 1803,
+      "DestinationId": 43180
+    },
+    {
+      "OriginId": 1803,
+      "DestinationId": 54833
+    },
+    {
+      "OriginId": 1803,
+      "DestinationId": 66311
+    },
+    {
+      "OriginId": 1803,
+      "DestinationId": 98424
+    }
+  ],
+  "Quotes": [],
+  "Places": [
+    {
+      "PlaceId": 1803,
+      "Name": "United Kingdom",
+      "Type": "Country",
+      "SkyscannerCode": "UK"
+    },
+    {
+      "PlaceId": 43180,
+      "IataCode": "BSL",
+      "Name": "Basel Mulhouse Freiburg",
+      "Type": "Station",
+      "SkyscannerCode": "BSL",
+      "CityName": "Basel",
+      "CityId": "BASE",
+      "CountryName": "Switzerland"
+    },
+    {
+      "PlaceId": 54833,
+      "IataCode": "GVA",
+      "Name": "Geneva",
+      "Type": "Station",
+      "SkyscannerCode": "GVA",
+      "CityName": "Geneva",
+      "CityId": "GENE",
+      "CountryName": "Switzerland"
+    },
+    {
+      "PlaceId": 66311,
+      "IataCode": "LUG",
+      "Name": "Lugano",
+      "Type": "Station",
+      "SkyscannerCode": "LUG",
+      "CityName": "Lugano",
+      "CityId": "LUGA",
+      "CountryName": "Switzerland"
+    },
+    {
+      "PlaceId": 98424,
+      "IataCode": "ZRH",
+      "Name": "Zurich",
+      "Type": "Station",
+      "SkyscannerCode": "ZRH",
+      "CityName": "Zurich",
+      "CityId": "ZURI",
+      "CountryName": "Switzerland"
+    }
+  ],
+  "Carriers": [],
+  "Currencies": [
+    {
+      "Code": "GBP",
+      "Symbol": "£",
+      "ThousandsSeparator": ",",
+      "DecimalSeparator": ".",
+      "SymbolOnLeft": true,
+      "SpaceBetweenAmountAndSymbol": false,
+      "RoundingCoefficient": 0,
+      "DecimalDigits": 2
+    }
+  ]
+}
