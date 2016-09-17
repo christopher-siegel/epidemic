@@ -24,8 +24,8 @@ IDX_START = 1
 IDX_JUMP = 85
 
 CSV_FILE_NAME = "flights.csv"
-
-CSV_FILE_COUNTRIES = "country_codes_population.csv"
+CSV_FILE_COUNTRIES = "big-countries.csv"
+# CSV_FILE_COUNTRIES = "country_codes_population.csv"
 def main():
     with open(CSV_FILE_COUNTRIES) as flightsCSV:
         reader = csv.reader(flightsCSV, delimiter=';')
