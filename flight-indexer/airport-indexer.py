@@ -50,7 +50,6 @@ def main():
             for toDestIDX in range(1, IDX_END):
                 if toDestIDX != currentIDX:
                     toDest = flights[toDestIDX][HEADER_CODE2]
-                    print("Indexing Flights - from: " + fromDest + "  -> " + toDest)
                     flightData = getFlightData(fromDest, toDest, '2016-09-17', '2016-09-24')
                     computeFlightData(fromDest, toDest, flightData)
             currentIDX+=1    
@@ -60,7 +59,8 @@ def main():
 def computeFlightData(fromDest, toDest, flightData):
     from random import randint
     if checkJsonKeyExists(flightData, "Quotes"):
-        quotes = flightData
+        quotes = flightData["Quotes"]
+        print("Indexing Flights - from: " + fromDest + "  -> " + toDest + "     | " + str(len(quotes)))
         if quotes != None:
             passengersSpace = 105
             flight = Flight()
