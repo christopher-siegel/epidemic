@@ -264,7 +264,7 @@
           projection: 'mercator',
           height: 500,
           fills: {
-            defaultFill: 'rgb(4,200,4)',
+            defaultFill: '#ccc',
             lt50: 'rgba(0,244,244,0.9)',
             gt50: 'red'
           },
@@ -274,7 +274,7 @@
             borderColor: '#999',
             highlightFillColor: 'rgb(4,170,4)',
             popupTemplate: function(geography, data) { // This function should just return a string
-              return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Population:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
+              return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Population:</td><td> 0.04%</td></tr><tr><td>Infected:</td><td> 2130</td></tr><tr><td>Growth:</td><td> 15%</td></tr></div>';
             }
            },
 
@@ -306,7 +306,7 @@
               handle.text( $( this ).slider( "value" ) );
             },
             slide: function( event, ui ) {
-              handle.text( "Woche #" + ui.value );
+              handle.text( "W " + ui.value );
               updateMap(2001, ui.value);
             }
           });
