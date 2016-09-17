@@ -5,14 +5,33 @@ read_data <- function(){
   # Read in infection data
   #===================================
   infections =read.csv("infections.csv", header = TRUE, sep = ";")
+  
+  pop =read.csv("country_codes_population.csv", header = TRUE, sep = ";")
+  pop <- pop[which(pop$population>0),]
+  
+  flights =read.csv("flights.csv", header = TRUE, sep = ";")
+  
   nrow(infections)
   infections <- infections[which(infections$year>=2016),]
   #infections[which(infections$week==53),]
   infections <- infections[which(infections$week<=52),]
+  infections <- infections[which(infections$code %in% pop$code_3),]
   
   countries  <- data.frame(unique(as.character(infections$code)))
   countries$node_number <- c(1:nrow(countries))
   names(countries) <- c('code','node_number')
+  countries$code_2 <- rep(NA,nrow(countries))
+  
+  countries$code <- as.character(countries$code)
+  pop$code_3 <- as.character(pop$code_3)
+  pop$code_2 <- as.character(pop$code_2)
+  
+  for (i in 1:nrow(countries)){
+    for (j in 1:nrow(pop)){
+      if (countries$code[i] == pop$code_3[j]) countries$code_2[i] <- pop$code_2[j]
+    }
+  }
+  
   #countries<- countries[which(countries$node_number<=5),]
   infections <- infections[which(infections$code %in% countries$code),]
   
@@ -68,8 +87,6 @@ read_data <- function(){
   #===================================
   # add initial population data
   #===================================
-  pop =read.csv("country_codes_population.csv", header = TRUE, sep = ";")
-  
   infections$pop <- rep(NA, nrow(infections))
   for (i in 1:nrow(infections)){
     for (j in 1:nrow(pop)){
@@ -77,25 +94,77 @@ read_data <- function(){
     }
   }
   
+  infections <- infections[complete.cases(infections),]
+  infections <- infections[which(infections$pop>0),]
+  
   save(infections, file='infections.Rda')
-}
-
-load(file='infections.Rda')
-n_t <- max(infections$time_stamp)-min(infections$time_stamp)+1
-n_nodes <- max(infections$node_number)-min(infections$node_number)+1
-
-#===================================
-# Read in flights data
-#===================================
-F<-array(0,dim=c(n_nodes,n_nodes,n_t))
-for (i in 1:n_nodes){
-  for (j in 1:n_nodes){
-    for (k in 1:n_t){
-      F[i,j,k] <- sample(50,1,replace = TRUE)
-    } 
+  
+  n_t <- max(infections$time_stamp)-min(infections$time_stamp)+1
+  n_nodes <- max(infections$node_number)-min(infections$node_number)+1
+  #===================================
+  # Read in flights data
+  #===================================
+  flight_data <- function(){
+    for (i in 1:nrow(flights)){
+      if (flights$week[i] <=9){
+        flights$time_index[i] <- paste(flights$year[i],'_0',flights$week[i], sep='')
+        print(flights$time_index[i])
+      }else{
+        flights$time_index[i] <- paste(flights$year[i],'_',flights$week[i], sep='')
+        print(flights$time_index[i])
+      }
+    }  
+    
+    flights$node_from <- rep(NA, nrow(flights))
+    flights$node_to <- rep(NA, nrow(flights))
+    flights$time_stamp <- rep(NA, nrow(flights))
+    
+    flights$from <- as.character(flights$from)
+    flights$to <- as.character(flights$to)
+    
+    for (i in 1:nrow(flights)){
+      for (j in 1:nrow(countries)){
+        if (flights$from[i] == countries$code_2[j]) flights$node_from[i] <- countries$node_number[j]
+        if (flights$to[i] == countries$code_2[j]) flights$node_to[i] <- countries$node_number[j]
+      }
+      for (j in 1:nrow(timedf)){
+        if (flights$time_index[i] == timedf$time_index[j]) flights$time_stamp[i] <- timedf$time_stamp[j]
+        print(paste(i,' ',j, sep=''))
+      }
+    }
+    
+    flights <- flights[complete.cases(flights),]
+    
+    save(flights, file='flights.Rda')
   }
+  
+  
+  F<-array(0,dim=c(n_nodes,n_nodes,n_t))
+  
+  for (i in 1:nrow(flights)){
+    node_from <- flights$node_from[i]
+    node_to <- flights$node_to[i]
+    t <- flights$time_stamp[i]
+    F[node_from, node_to, t] <- flights$passengers[i]
+  }
+
+  for (i in 1:n_nodes){
+    for (j in 1:n_nodes){
+      for (k in 1:n_t){
+        F[i,j,k] <- sample(50,1,replace = TRUE)
+      } 
+    }
+  }
+  sum(is.na(F))
+  
 }
 
+
+#===================================
+# Modelling
+#===================================
+load(file='infections.Rda')
+load(file='flights.Rda')
 #===================================
 # Build empty nodes
 #===================================
@@ -161,9 +230,9 @@ update_state <- function(state, t, F, alpha, beta){
     help_sum <- 0
     for (k in 1:n_nodes){
        help_sum <- help_sum + F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1]
-       print(paste(k, ' ',F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1], sep=''))
+       print(paste(k, ' ',F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1],' ',help_sum, sep=''))
     }
-   
+    help_sum
     
    state[[j]]$i_m[t] <- state[[j]]$i_m[t-1]+
                         alpha* state[[j]]$s_m[t-1]/state[[j]]$n_m[t-1]*(state[[j]]$i_m[t-1]+help_sum) -
@@ -178,26 +247,29 @@ update_state <- function(state, t, F, alpha, beta){
   state[[j]]$n_m[t]  <- max(state[[j]]$n_m[t], 0)
   state[[j]]$i_m[t]  <- max(state[[j]]$i_m[t], 0)
   state[[j]]$s_m[t]  <- max(state[[j]]$s_m[t], 0)
+  
+  state[[j]]
   }
   return(state)
 }
 
-state <- update_state(state1, t = 2, F, alpha = 0.1, beta = 0.1)
+state <- update_state(state1, t = 2, F, alpha = 1e-06, beta = 1e-06)
 state
 
 #===================================
 # compute parameters on the grid
 #===================================
-length.out = 10
-alpha=seq(from=0.00001, to=100, length.out=length.out)
-beta=seq(from=0.00001, to=100, length.out=length.out)
+length.out = 2
+alpha=seq(from=0.000001, to=0.001, length.out=length.out)
+beta=seq(from=0.000001, to=0.001, length.out=length.out)
 param_grid <- expand.grid( alpha,  beta)
 names(param_grid) <- c('alpha','beta')
 param_grid$score <- rep(NA,length.out)
 
 cost_function <- function(state1, alpha, beta){
   #starting from state1 update according to the dynamics
-  for (t in 2:n_t){
+  #for (t in 2:n_t){
+  for (t in 2:10){
     state <- update_state(state1, t, F, alpha, beta)
   }
   
@@ -211,10 +283,14 @@ cost_function <- function(state1, alpha, beta){
 }
 
 for (i in 1:nrow(param_grid)){
-  param_grid$score[i] <- cost_function(state1, param_grid$alpha[i], param_grid$beta[i])
+  param_grid$score[i] <- cost_function(state1, alpha= param_grid$alpha[i], beta = param_grid$beta[i])
 }
 
 alpha_opt <- param_grid$alpha[which(param_grid$score == min(param_grid$score))]
 beta_opt <- param_grid$beta[which(param_grid$score == min(param_grid$score))]
 alpha_opt
 beta_opt
+
+
+output <- data.frame(country = c(countries$code[1:20]), week= sample(52,20, replace=T), infected_number= sample(100,20, replace=T), infected_percentage= sample(10,20, replace=T)/1000)
+write.table(output, file = "")
