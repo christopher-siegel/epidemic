@@ -151,7 +151,7 @@
                                             <tr>
                                                 <th>Rank</th>
                                                 <th>Country</th>
-                                                <th>Infection Score</th>
+                                                <th>Infection (in %)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -174,11 +174,6 @@
                                                 <td>4</td>
                                                 <td>Brazil</td>
                                                 <td>110</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Kenia</td>
-                                                <td>109</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -262,86 +257,106 @@
     </div>
     <!-- /#wrapper -->
 
-  <script>
-       //basic map config with custom fills, mercator projection
-      var map = new Datamap({
-        scope: 'world',
-        element: document.getElementById('container1'),
-        projection: 'mercator',
-        height: 500,
-        fills: {
-          defaultFill: '#f0af0a',
-          lt50: 'rgba(0,244,244,0.9)',
-          gt50: 'red'
-        },
-         geographyConfig: {
-          borderWidth: 1,
-          borderOpacity: 1,
-          borderColor: '#999',
-          popupTemplate: function(geography, data) { // This function should just return a string
-            return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Rate:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
-          }
-         },
-
-        data: {
-          USA: {fillKey: 'lt50' },
-          RUS: {fillKey: 'lt50' },
-          CAN: {fillKey: 'lt50' },
-          BRA: {fillKey: 'gt50' },
-          ARG: {fillKey: 'gt50'},
-          COL: {fillKey: 'gt50' },
-          AUS: {fillKey: 'gt50' },
-          ZAF: {fillKey: 'gt50' },
-          MAD: {fillKey: 'gt50' }
-        },
-
-        blub: function() {
-          console.log("hello");
-          return "hello";
-        }
-      })
-
-      $( document ).ready(function() {
-
-      var handle = $( "#custom-handle" );
-      $( "#slider" ).slider({
-          create: function() {
-            handle.text( $( this ).slider( "value" ) );
-          },
-          slide: function( event, ui ) {
-            handle.text( "Week: #" + ui.value );
-            map.updateChoropleth({RUS: 'rgba(255,0,0,'+ui.value/100+')'});
-          }
-        });
-      });
-
-     </script>
-
-
-    <!-- <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
     <script>
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyCwehYOGF9eSo_pU0Dt5S5OA0aWBZEbLXs",
-        authDomain: "epidemic-3898d.firebaseapp.com",
-        databaseURL: "https://epidemic-3898d.firebaseio.com",
-        storageBucket: "epidemic-3898d.appspot.com",
-        messagingSenderId: "198266906543"
-      };
-      firebase.initializeApp(config);
+        var map = new Datamap({
+          scope: 'world',
+          element: document.getElementById('container1'),
+          projection: 'mercator',
+          height: 500,
+          fills: {
+            defaultFill: 'rgb(4,200,4)',
+            lt50: 'rgba(0,244,244,0.9)',
+            gt50: 'red'
+          },
+           geographyConfig: {
+            borderWidth: 1,
+            borderOpacity: 1,
+            borderColor: '#999',
+            highlightFillColor: 'rgb(4,170,4)',
+            popupTemplate: function(geography, data) { // This function should just return a string
+              return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Population:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
+            }
+           },
 
-      console.log(firebase);
+          data: {
+          //   USA: {fillKey: 'lt50' },
+          //   RUS: {fillKey: 'lt50' },
+          //   CAN: {fillKey: 'lt50' },
+          //   BRA: {fillKey: 'gt50' },
+          //   ARG: {fillKey: 'gt50' },
+          //   COL: {fillKey: 'gt50' },
+          //   AUS: {fillKey: 'gt50' },
+          //   ZAF: {fillKey: 'gt50' },
+          //   MAD: {fillKey: 'gt50' }
+          },
+
+          blub: function() {
+            console.log("hello");
+            return "hello";
+          }
+        })
 
         $( document ).ready(function() {
-          // Get a database reference to our posts
-            var ref = firebase.database().ref();
-            // Attach an asynchronous callback to read the data at our posts reference
-            ref.on("value", function(snapshot) {
-              console.log(snapshot.val());
-            }, function (errorObject) {
-              console.log("The read failed: " + errorObject.code);
-            });
+
+        var handle = $( "#custom-handle" );
+        $( "#slider" ).slider({
+            min: 1,
+            max: 2,
+            create: function() {
+              handle.text( $( this ).slider( "value" ) );
+            },
+            slide: function( event, ui ) {
+              handle.text( "Woche #" + ui.value );
+              updateMap(2001, ui.value);
+            }
+          });
         });
-    </script> -->
+
+        </script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCwehYOGF9eSo_pU0Dt5S5OA0aWBZEbLXs",
+            authDomain: "epidemic-3898d.firebaseapp.com",
+            databaseURL: "https://epidemic-3898d.firebaseio.com",
+            storageBucket: "epidemic-3898d.appspot.com",
+            messagingSenderId: "198266906543"
+          };
+          firebase.initializeApp(config);
+
+          console.log(firebase);
+
+          function updateMap(year, week) {
+              var ref = firebase.database().ref().child("infections").child("y"+year+"w"+week);
+              // Attach an asynchronous callback to read the data at our posts reference
+              ref.on("value", function(snapshot) {
+                var infectionDataByCountryCode = snapshot.val();
+                var highestPercent = 0; // yes this is correct!!
+
+                for (country in infectionDataByCountryCode) {
+                    var percent = infectionDataByCountryCode[country].percent;
+                    if ( percent > highestPercent ) {
+                        highestPercent = percent
+                    }
+                }
+                for (country in infectionDataByCountryCode) {
+                    var percent = infectionDataByCountryCode[country].percent;
+                    var update = '{"' + country + '" : "rgba(255,0,0,'+ percent +')"}';
+                    update = JSON.parse(update);
+                    map.updateChoropleth(update);
+                }
+              }, function (errorObject) {
+                console.log("The read failed: " + errorObject.code);
+              });
+          };
+
+            $( document ).ready(function() {
+              // Initital call to Database
+              updateMap(2001, 1);
+
+            });
+        </script>
 </body>
 </html>

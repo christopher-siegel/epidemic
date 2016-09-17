@@ -45,62 +45,62 @@
 
 </div>
 
-  <script>
-      var map = new Datamap({
-        scope: 'world',
-        element: document.getElementById('container1'),
-        projection: 'mercator',
-        height: 500,
-        fills: {
-          defaultFill: 'rgb(4,200,4)',
-          lt50: 'rgba(0,244,244,0.9)',
-          gt50: 'red'
-        },
-         geographyConfig: {
-          borderWidth: 1,
-          borderOpacity: 1,
-          borderColor: '#999',
-          highlightFillColor: 'rgb(4,170,4)',
-          popupTemplate: function(geography, data) { // This function should just return a string
-            return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Population:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
-          }
-         },
-
-        data: {
-        //   USA: {fillKey: 'lt50' },
-        //   RUS: {fillKey: 'lt50' },
-        //   CAN: {fillKey: 'lt50' },
-        //   BRA: {fillKey: 'gt50' },
-        //   ARG: {fillKey: 'gt50' },
-        //   COL: {fillKey: 'gt50' },
-        //   AUS: {fillKey: 'gt50' },
-        //   ZAF: {fillKey: 'gt50' },
-        //   MAD: {fillKey: 'gt50' }
-        },
-
-        blub: function() {
-          console.log("hello");
-          return "hello";
+<script>
+    var map = new Datamap({
+      scope: 'world',
+      element: document.getElementById('container1'),
+      projection: 'mercator',
+      height: 500,
+      fills: {
+        defaultFill: 'rgb(4,200,4)',
+        lt50: 'rgba(0,244,244,0.9)',
+        gt50: 'red'
+      },
+       geographyConfig: {
+        borderWidth: 1,
+        borderOpacity: 1,
+        borderColor: '#999',
+        highlightFillColor: 'rgb(4,170,4)',
+        popupTemplate: function(geography, data) { // This function should just return a string
+          return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Population:</td><td>0.04%</td></tr><tr><td>Infected:</td><td>2130</td></tr><tr><td>Growth:</td><td>15%</td></tr></div>';
         }
-      })
+       },
 
-      $( document ).ready(function() {
+      data: {
+      //   USA: {fillKey: 'lt50' },
+      //   RUS: {fillKey: 'lt50' },
+      //   CAN: {fillKey: 'lt50' },
+      //   BRA: {fillKey: 'gt50' },
+      //   ARG: {fillKey: 'gt50' },
+      //   COL: {fillKey: 'gt50' },
+      //   AUS: {fillKey: 'gt50' },
+      //   ZAF: {fillKey: 'gt50' },
+      //   MAD: {fillKey: 'gt50' }
+      },
 
-      var handle = $( "#custom-handle" );
-      $( "#slider" ).slider({
-          min: 1,
-          max: 2,
-          create: function() {
-            handle.text( $( this ).slider( "value" ) );
-          },
-          slide: function( event, ui ) {
-            handle.text( "Woche #" + ui.value );
-            updateMap(2001, ui.value);
-          }
-        });
+      blub: function() {
+        console.log("hello");
+        return "hello";
+      }
+    })
+
+    $( document ).ready(function() {
+
+    var handle = $( "#custom-handle" );
+    $( "#slider" ).slider({
+        min: 1,
+        max: 2,
+        create: function() {
+          handle.text( $( this ).slider( "value" ) );
+        },
+        slide: function( event, ui ) {
+          handle.text( "Woche #" + ui.value );
+          updateMap(2001, ui.value);
+        }
       });
+    });
 
-      </script>
+    </script>
 
 
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
