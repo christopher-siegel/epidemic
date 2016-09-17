@@ -3,9 +3,8 @@ import json
 import os
 ####################### GLOBALS
 #Skyscanner
-SKYSCANNER_API_KEY = "prtl6749387986743898559646983194"
+SKYSCANNER_API_KEY = "ha949236875329385519213435129503"
 SKYSCANNER_SERVICE_URL = "http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/"#GB/GBP/en-GB/UK/anywhere/anytime/anytime?apiKey=" + apiKey;
-CSV_FILE_NAME = "flights.csv"
 
 class Flight:
     fromDest = ""
@@ -19,10 +18,12 @@ class Flight:
 HEADER_CODE2 = 2
 COUNTRY_NAME = 0
 
-#IDX_START = 1
+IDX_START = 1
 #IDX_START = 86
-IDX_START = 241
+#IDX_START = 241
 IDX_JUMP = 85
+
+CSV_FILE_NAME = "flights.csv"
 
 CSV_FILE_COUNTRIES = "country_codes_population.csv"
 def main():
@@ -41,7 +42,7 @@ def main():
             for toDestIDX in range(1, IDX_END):
                 if toDestIDX != currentIDX:
                     toDest = flights[toDestIDX][HEADER_CODE2]
-                    flightData = getFlightData(fromDest, toDest, '2016-09-17', '2016-09-24')
+                    flightData = getFlightData(fromDest, toDest, '2016-09-22', '2016-09-23')
                     computeFlightData(fromDest, toDest, flightData)
             currentIDX+=1    
             print("^^^^^^^^^^^^^^^^^^^^^^^^^^finished indexing for country: " + fromDestCountry)
@@ -55,12 +56,12 @@ def computeFlightData(fromDest, toDest, flightData):
         if quotes != None:
             passengersSpace = 105
             flight = Flight()
-            flight.passengers = len(quotes) * passengersSpace 
+            flight.passengers = len(quotes) * passengersSpace * 7
             flight.fromDest = fromDest
             flight.toDest = toDest
             flight.year = 2016
             for week in range(1, 53):
-                flight.week = week
+                flight.week = week 
                 writeModelToCSV(flight)
 
 
@@ -73,7 +74,7 @@ def getFlightData(fromCountry, toCountry, fromDate, toDate):
     return jsonObject
 
 def createServiceURL(fromCountry, toCountry, fromDate, toDate):
-    return (SKYSCANNER_SERVICE_URL +  "GB/GBP/en-GB/" + fromCountry + "/" + toCountry + "/" + fromDate + "/" + toDate + "?apiKey=" + SKYSCANNER_API_KEY)
+    return (SKYSCANNER_SERVICE_URL +  "GB/GBP/en-GB/" + fromCountry + "/" + toCountry + "/" + fromDate + "?apiKey=" + SKYSCANNER_API_KEY)
 
 def responseForRequestService(serviceURL):
     r = requests.get(serviceURL)
