@@ -1,250 +1,1 @@
-Code;Country
-ABW;Aruba
-AFG;Afghanistan
-AGO;Angola
-AIA;Anguilla
-ALA;Åland Islands
-ALB;Albania
-AND;Andorra
-ARE;United Arab Emirates
-ARG;Argentina
-ARM;Armenia
-ASM;American Samoa
-ATA;Antarctica
-ATF;French Southern Territories
-ATG;Antigua and Barbuda
-AUS;Australia
-AUT;Austria
-AZE;Azerbaijan
-BDI;Burundi
-BEL;Belgium
-BEN;Benin
-BES;Bonaire, Sint Eustatius and Saba
-BFA;Burkina Faso
-BGD;Bangladesh
-BGR;Bulgaria
-BHR;Bahrain
-BHS;Bahamas
-BIH;Bosnia and Herzegovina
-BLM;Saint Barthélemy
-BLR;Belarus
-BLZ;Belize
-BMU;Bermuda
-BOL;Bolivia, Plurinational State of
-BRA;Brazil
-BRB;Barbados
-BRN;Brunei Darussalam
-BTN;Bhutan
-BVT;Bouvet Island
-BWA;Botswana
-CAF;Central African Republic
-CAN;Canada
-CCK;Cocos (Keeling) Islands
-CHE;Switzerland
-CHL;Chile
-CHN;China
-CIV;Côte d'Ivoire
-CMR;Cameroon
-COD;Congo, the Democratic Republic of the
-COG;Congo
-COK;Cook Islands
-COL;Colombia
-COM;Comoros
-CPV;Cabo Verde
-CRI;Costa Rica
-CUB;Cuba
-CUW;Curaçao
-CXR;Christmas Island
-CYM;Cayman Islands
-CYP;Cyprus
-CZE;Czech Republic
-DEU;Germany
-DJI;Djibouti
-DMA;Dominica
-DNK;Denmark
-DOM;Dominican Republic
-DZA;Algeria
-ECU;Ecuador
-EGY;Egypt
-ERI;Eritrea
-ESH;Western Sahara
-ESP;Spain
-EST;Estonia
-ETH;Ethiopia
-FIN;Finland
-FJI;Fiji
-FLK;Falkland Islands (Malvinas)
-FRA;France
-FRO;Faroe Islands
-FSM;Micronesia, Federated States of
-GAB;Gabon
-GBR;United Kingdom
-GEO;Georgia
-GGY;Guernsey
-GHA;Ghana
-GIB;Gibraltar
-GIN;Guinea
-GLP;Guadeloupe
-GMB;Gambia
-GNB;Guinea-Bissau
-GNQ;Equatorial Guinea
-GRC;Greece
-GRD;Grenada
-GRL;Greenland
-GTM;Guatemala
-GUF;French Guiana
-GUM;Guam
-GUY;Guyana
-HKG;Hong Kong
-HMD;Heard Island and McDonald Islands
-HND;Honduras
-HRV;Croatia
-HTI;Haiti
-HUN;Hungary
-IDN;Indonesia
-IMN;Isle of Man
-IND;India
-IOT;British Indian Ocean Territory
-IRL;Ireland
-IRN;Iran, Islamic Republic of
-IRQ;Iraq
-ISL;Iceland
-ISR;Israel
-ITA;Italy
-JAM;Jamaica
-JEY;Jersey
-JOR;Jordan
-JPN;Japan
-KAZ;Kazakhstan
-KEN;Kenya
-KGZ;Kyrgyzstan
-KHM;Cambodia
-KIR;Kiribati
-KNA;Saint Kitts and Nevis
-KOR;Korea, Republic of
-KWT;Kuwait
-LAO;Lao People's Democratic Republic
-LBN;Lebanon
-LBR;Liberia
-LBY;Libya
-LCA;Saint Lucia
-LIE;Liechtenstein
-LKA;Sri Lanka
-LSO;Lesotho
-LTU;Lithuania
-LUX;Luxembourg
-LVA;Latvia
-MAC;Macao
-MAF;Saint Martin (French part)
-MAR;Morocco
-MCO;Monaco
-MDA;Moldova, Republic of
-MDG;Madagascar
-MDV;Maldives
-MEX;Mexico
-MHL;Marshall Islands
-MKD;Macedonia, the former Yugoslav Republic of
-MLI;Mali
-MLT;Malta
-MMR;Myanmar
-MNE;Montenegro
-MNG;Mongolia
-MNP;Northern Mariana Islands
-MOZ;Mozambique
-MRT;Mauritania
-MSR;Montserrat
-MTQ;Martinique
-MUS;Mauritius
-MWI;Malawi
-MYS;Malaysia
-MYT;Mayotte
-NAM;Namibia
-NCL;New Caledonia
-NER;Niger
-NFK;Norfolk Island
-NGA;Nigeria
-NIC;Nicaragua
-NIU;Niue
-NLD;Netherlands
-NOR;Norway
-NPL;Nepal
-NRU;Nauru
-NZL;New Zealand
-OMN;Oman
-PAK;Pakistan
-PAN;Panama
-PCN;Pitcairn
-PER;Peru
-PHL;Philippines
-PLW;Palau
-PNG;Papua New Guinea
-POL;Poland
-PRI;Puerto Rico
-PRK;Korea, Democratic People's Republic of
-PRT;Portugal
-PRY;Paraguay
-PSE;Palestine, State of
-PYF;French Polynesia
-QAT;Qatar
-REU;Réunion
-ROU;Romania
-RUS;Russian Federation
-RWA;Rwanda
-SAU;Saudi Arabia
-SDN;Sudan
-SEN;Senegal
-SGP;Singapore
-SGS;South Georgia and the South Sandwich Islands
-SHN;Saint Helena, Ascension and Tristan da Cunha
-SJM;Svalbard and Jan Mayen
-SLB;Solomon Islands
-SLE;Sierra Leone
-SLV;El Salvador
-SMR;San Marino
-SOM;Somalia
-SPM;Saint Pierre and Miquelon
-SRB;Serbia
-SSD;South Sudan
-STP;Sao Tome and Principe
-SUR;Suriname
-SVK;Slovakia
-SVN;Slovenia
-SWE;Sweden
-SWZ;Swaziland
-SXM;Sint Maarten (Dutch part)
-SYC;Seychelles
-SYR;Syrian Arab Republic
-TCA;Turks and Caicos Islands
-TCD;Chad
-TGO;Togo
-THA;Thailand
-TJK;Tajikistan
-TKL;Tokelau
-TKM;Turkmenistan
-TLS;Timor-Leste
-TON;Tonga
-TTO;Trinidad and Tobago
-TUN;Tunisia
-TUR;Turkey
-TUV;Tuvalu
-TWN;Taiwan, Province of China
-TZA;Tanzania, United Republic of
-UGA;Uganda
-UKR;Ukraine
-UMI;United States Minor Outlying Islands
-URY;Uruguay
-USA;United States of America
-UZB;Uzbekistan
-VAT;Holy See (Vatican City State)
-VCT;Saint Vincent and the Grenadines
-VEN;Venezuela, Bolivarian Republic of
-VGB;Virgin Islands, British
-VIR;Virgin Islands, U.S.
-VNM;Viet Nam
-VUT;Vanuatu
-WLF;Wallis and Futuna
-WSM;Samoa
-YEM;Yemen
-ZAF;South Africa
-ZMB;Zambia
-ZWE;Zimbabwe
+Code;Country;Population;;;ALA;��land Islands;;;;AFG;Afghanistan;33369945;;;ALB;Albania;2903700;;;DZA;Algeria;40375954;;;ASM;American Samoa;55602;;;AND;Andorra;69165;;;AGO;Angola;25830958;;;AIA;Anguilla;14763;;;ATA;Antarctica;;;;ATG;Antigua and Barbuda;92738;;;ARG;Argentina;43847277;;;ARM;Armenia;3026048;;;ABW;Aruba;104263;;;AUS;Australia;24309330;;;AUT;Austria;8569633;;;AZE;Azerbaijan;9868447;;;BHS;Bahamas;392718;;;BHR;Bahrain;1396829;;;BGD;Bangladesh;162910864;;;BRB;Barbados;285006;;;BLR;Belarus;9481521;;;BEL;Belgium;11371928;;;BLZ;Belize;366942;;;BEN;Benin;11166658;;;BMU;Bermuda;61662;;;BTN;Bhutan;784103;;;BOL;Bolivia, Plurinational State of;10888402;;;BES;Bonaire, Sint Eustatius and Saba;;;;BIH;Bosnia and Herzegovina;3802134;;;BWA;Botswana;2303820;;;BVT;Bouvet Island;;;;BRA;Brazil;209567920;;;IOT;British Indian Ocean Territory;;;;BRN;Brunei Darussalam;428874;;;BGR;Bulgaria;7097796;;;BFA;Burkina Faso;18633725;;;BDI;Burundi;11552561;;;CIV;Cote d'Ivoire;23254184;;;CPV;Cabo Verde;526993;;;KHM;Cambodia;15827241;;;CMR;Cameroon;23924407;;;CAN;Canada;36286378;;;CYM;Cayman Islands;60764;;;CAF;Central African Republic;4998493;;;TCD;Chad;14496739;;;CHL;Chile;18131850;;;CHN;China;1382323332;;;CXR;Christmas Island;;;;CCK;Cocos (Keeling) Islands;;;;COL;Colombia;48654392;;;COM;Comoros;807118;;;COG;Congo;4740992;;;COD;Congo, the Democratic Republic of the;79722624;;;COK;Cook Islands;20948;;;CRI;Costa Rica;4857218;;;HRV;Croatia;4225001;;;CUB;Cuba;11392889;;;CUW;Curacao;158635;;;CYP;Cyprus;1176598;;;CZE;Czech Republic;10548058;;;DNK;Denmark;5690750;;;DJI;Djibouti;899598;;;DMA;Dominica;73016;;;DOM;Dominican Republic;10648613;;;ECU;Ecuador;16385450;;;EGY;Egypt;93383574;;;SLV;El Salvador;6146419;;;GNQ;Equatorial Guinea;869587;;;ERI;Eritrea;5351680;;;EST;Estonia;1309104;;;ETH;Ethiopia;101853268;;;FLK;Falkland Islands (Malvinas);2912;;;FRO;Faroe Islands;48239;;;FJI;Fiji;897537;;;FIN;Finland;5523904;;;FRA;France;64668129;;;GUF;French Guiana;275688;;;PYF;French Polynesia;285735;;;ATF;French Southern Territories;;;;GAB;Gabon;1763142;;;GMB;Gambia;2054986;;;GEO;Georgia;3979781;;;DEU;Germany;80682351;;;GHA;Ghana;28033375;;;GIB;Gibraltar;32373;;;GRC;Greece;10919459;;;GRL;Greenland;56196;;;GRD;Grenada;107327;;;GLP;Guadeloupe;470547;;;GUM;Guam;172094;;;GTM;Guatemala;16672956;;;GGY;Guernsey;164466;;;GIN;Guinea;12947122;;;GNB;Guinea-Bissau;1888429;;;GUY;Guyana;770610;;;HTI;Haiti;10848175;;;HMD;Heard Island and McDonald Islands;;;;VAT;Holy See (Vatican City State);801;;;HND;Honduras;8189501;;;HKG;Hong Kong;7346248;;;HUN;Hungary;9821318;;;ISL;Iceland;331778;;;IND;India;1326801576;;;IDN;Indonesia;260581100;;;IRN;Iran, Islamic Republic of;80043146;;;IRQ;Iraq;37547686;;;IRL;Ireland;4713993;;;IMN;Isle of Man;88421;;;ISR;Israel;8192463;;;ITA;Italy;59801004;;;JAM;Jamaica;2803362;;;JPN;Japan;126323715;;;JEY;Jersey;;;;JOR;Jordan;7747800;;;KAZ;Kazakhstan;17855384;;;KEN;Kenya;47251449;;;KIR;Kiribati;114405;;;PRK;Korea, Democratic People's Republic of;;;;KOR;Korea, Republic of;50503933;;;KWT;Kuwait;4007146;;;KGZ;Kyrgyzstan;6033769;;;LAO;Lao People's Democratic Republic;6918367;;;LVA;Latvia;1955742;;;LBN;Lebanon;5988153;;;LSO;Lesotho;2160309;;;LBR;Liberia;4615222;;;LBY;Libya;6330159;;;LIE;Liechtenstein;37776;;;LTU;Lithuania;2850030;;;LUX;Luxembourg;576243;;;MAC;Macao;597126;;;MKD;Macedonia, the former Yugoslav Republic of;2081012;;;MDG;Madagascar;24915822;;;MWI;Malawi;17749826;;;MYS;Malaysia;30751602;;;MDV;Maldives;369812;;;MLI;Mali;18134835;;;MLT;Malta;419615;;;MHL;Marshall Islands;53069;;;MTQ;Martinique;396364;;;MRT;Mauritania;4166463;;;MUS;Mauritius;1277459;;;MYT;Mayotte;246496;;;MEX;Mexico;128632004;;;FSM;Micronesia, Federated States of;104966;;;MDA;Moldova, Republic of;4062862;;;MCO;Monaco;37863;;;MNG;Mongolia;3006444;;;MNE;Montenegro;626101;;;MSR;Montserrat;5154;;;MAR;Morocco;34817065;;;MOZ;Mozambique;28751362;;;MMR;Myanmar;54363426;;;NAM;Namibia;2513981;;;NRU;Nauru;10263;;;NPL;Nepal;28850717;;;NLD;Netherlands;16979729;;;NCL;New Caledonia;266431;;;NZL;New Zealand;4565185;;;NIC;Nicaragua;6150035;;;NER;Niger;20715285;;;NGA;Nigeria;186987563;;;NIU;Niue;1612;;;NFK;Norfolk Island;25281327;;;MNP;Northern Mariana Islands;55389;;;NOR;Norway;5271958;;;OMN;Oman;4654471;;;PAK;Pakistan;192826502;;;PLW;Palau;21501;;;PSE;Palestine, State of;4797239;;;PAN;Panama;3990406;;;PNG;Papua New Guinea;;;;PRY;Paraguay;6725430;;;PER;Peru;31774225;;;PHL;Philippines;102250133;;;PCN;Pitcairn;;;;POL;Poland;38593161;;;PRT;Portugal;10304434;;;PRI;Puerto Rico;3680772;;;QAT;Qatar;2291368;;;REU;Reunion;867214;;;ROU;Romania;19372734;;;RUS;Russian Federation;143439832;;;RWA;Rwanda;11882766;;;BLM;Saint Barth̩lemy;;;;SHN;Saint Helena, Ascension and Tristan da Cunha;3956;;;KNA;Saint Kitts and Nevis;56183;;;LCA;Saint Lucia;186383;;;MAF;Saint Martin (French part);;;;SPM;Saint Pierre and Miquelon;6301;;;VCT;Saint Vincent and the Grenadines;109644;;;WSM;Samoa;194523;;;SMR;San Marino;31950;;;STP;Sao Tome and Principe;194390;;;SAU;Saudi Arabia;32157974;;;SEN;Senegal;15589485;;;SRB;Serbia;8812705;;;SYC;Seychelles;97026;;;SLE;Sierra Leone;6592102;;;SGP;Singapore;5696506;;;SXM;Sint Maarten (Dutch part);39538;;;SVK;Slovakia;5429418;;;SVN;Slovenia;2069362;;;SLB;Solomon Islands;594934;;;SOM;Somalia;11079013;;;ZAF;South Africa;54978907;;;SGS;South Georgia and the South Sandwich Islands;;;;SSD;South Sudan;12733427;;;ESP;Spain;46064604;;;LKA;Sri Lanka;20810816;;;SDN;Sudan;41175541;;;SUR;Suriname;547610;;;SJM;Svalbard and Jan Mayen;;;;SWZ;Swaziland;1304063;;;SWE;Sweden;9851852;;;CHE;Switzerland;8379477;;;SYR;Syrian Arab Republic;18563595;;;TWN;Taiwan, Province of China;23395600;;;TJK;Tajikistan;8669464;;;TZA;Tanzania, United Republic of;55155473;;;THA;Thailand;68146609;;;TLS;Timor-Leste;1211245;;;TGO;Togo;7496833;;;TKL;Tokelau;1276;;;TON;Tonga;106915;;;TTO;Trinidad and Tobago;1364973;;;TUN;Tunisia;11375220;;;TUR;Turkey;79622062;;;TKM;Turkmenistan;5438670;;;TCA;Turks and Caicos Islands;34904;;;TUV;Tuvalu;9943;;;UGA;Uganda;40322768;;;UKR;Ukraine;44624373;;;ARE;United Arab Emirates;9266971;;;GBR;United Kingdom;65111143;;;UMI;United States Minor Outlying Islands;;;;USA;United States of America;324118787;;;URY;Uruguay;3444071;;;UZB;Uzbekistan;30300446;;;VUT;Vanuatu;270470;;;VEN;Venezuela, Bolivarian Republic of;31518855;;;VNM;Viet Nam;94444200;;;VGB;Virgin Islands, British;30659;;;VIR;Virgin Islands, U.S.;106415;;;WLF;Wallis and Futuna;13112;;;ESH;Western Sahara;584206;;;YEM;Yemen;27477600;;;ZMB;Zambia;16717332;;;ZWE;Zimbabwe;15966810;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
