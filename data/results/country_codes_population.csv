@@ -1,0 +1,247 @@
+country;code_3;code_2;population
+Andorra;AND;AD;69165
+United Arab Emirates;ARE;AE;9266971
+Afghanistan;AFG;AF;33369945
+Antigua and Barbuda;ATG;AG;92738
+Anguilla;AIA;AI;14763
+Albania;ALB;AL;2903700
+Armenia;ARM;AM;3026048
+Angola;AGO;AO;25830958
+Antarctica;ATA;AQ;
+Argentina;ARG;AR;43847277
+American Samoa;ASM;AS;55602
+Austria;AUT;AT;8569633
+Australia;AUS;AU;24309330
+Aruba;ABW;AW;104263
+Aland Islands;ALA;AX;
+Azerbaijan;AZE;AZ;9868447
+Bosnia and Herzegovina;BIH;BA;3802134
+Barbados;BRB;BB;285006
+Bangladesh;BGD;BD;162910864
+Belgium;BEL;BE;11371928
+Burkina Faso;BFA;BF;18633725
+Bulgaria;BGR;BG;7097796
+Bahrain;BHR;BH;1396829
+Burundi;BDI;BI;11552561
+Benin;BEN;BJ;11166658
+Bermuda;BMU;BM;61662
+Brunei Darussalam;BRN;BN;428874
+Bolivia, Plurinational State of;BOL;BO;10888402
+Bonaire, Sint Eustatius and Saba;BES;BQ;
+Brazil;BRA;BR;209567920
+Bahamas;BHS;BS;392718
+Bhutan;BTN;BT;784103
+Bouvet Island;BVT;BV;
+Botswana;BWA;BW;2303820
+Belarus;BLR;BY;9481521
+Belize;BLZ;BZ;366942
+Canada;CAN;CA;36286378
+Cocos (Keeling) Islands;CCK;CC;
+Congo, the Democratic Republic of the;COD;CD;79722624
+Central African Republic;CAF;CF;4998493
+Congo;COG;CG;4740992
+Switzerland;CHE;CH;8379477
+Cote d'Ivoire;CIV;CI;23254184
+Cook Islands;COK;CK;20948
+Chile;CHL;CL;18131850
+Cameroon;CMR;CM;23924407
+China;CHN;CN;1382323332
+Colombia;COL;CO;48654392
+Costa Rica;CRI;CR;4857218
+Cuba;CUB;CU;11392889
+Cabo Verde;CPV;CV;526993
+Curacao;CUW;CW;158635
+Christmas Island;CXR;CX;
+Cyprus;CYP;CY;1176598
+Czech Republic;CZE;CZ;10548058
+Germany;DEU;DE;80682351
+Djibouti;DJI;DJ;899598
+Denmark;DNK;DK;5690750
+Dominica;DMA;DM;73016
+Dominican Republic;DOM;DO;10648613
+Algeria;DZA;DZ;40375954
+Ecuador;ECU;EC;16385450
+Estonia;EST;EE;1309104
+Egypt;EGY;EG;93383574
+Western Sahara;ESH;EH;584206
+Eritrea;ERI;ER;5351680
+Spain;ESP;ES;46064604
+Ethiopia;ETH;ET;101853268
+Finland;FIN;FI;5523904
+Fiji;FJI;FJ;897537
+Falkland Islands (Malvinas);FLK;FK;2912
+Micronesia, Federated States of;FSM;FM;104966
+Faroe Islands;FRO;FO;48239
+France;FRA;FR;64668129
+Gabon;GAB;GA;1763142
+Grenada;GRD;GD;107327
+Georgia;GEO;GE;3979781
+French Guiana;GUF;GF;275688
+Guernsey;GGY;GG;164466
+Ghana;GHA;GH;28033375
+Gibraltar;GIB;GI;32373
+Greenland;GRL;GL;56196
+Gambia;GMB;GM;2054986
+Guinea;GIN;GN;12947122
+Guadeloupe;GLP;GP;470547
+Equatorial Guinea;GNQ;GQ;869587
+Greece;GRC;GR;10919459
+South Georgia and the South Sandwich Islands;SGS;GS;
+Guatemala;GTM;GT;16672956
+Guam;GUM;GU;172094
+Guinea-Bissau;GNB;GW;1888429
+Guyana;GUY;GY;770610
+Hong Kong;HKG;HK;7346248
+Heard Island and McDonald Islands;HMD;HM;
+Honduras;HND;HN;8189501
+Croatia;HRV;HR;4225001
+Haiti;HTI;HT;10848175
+Hungary;HUN;HU;9821318
+Indonesia;IDN;ID;260581100
+Ireland;IRL;IE;4713993
+Israel;ISR;IL;8192463
+Isle of Man;IMN;IM;88421
+India;IND;IN;1326801576
+British Indian Ocean Territory;IOT;IO;
+Iraq;IRQ;IQ;37547686
+Iran, Islamic Republic of;IRN;IR;80043146
+Iceland;ISL;IS;331778
+Italy;ITA;IT;59801004
+Jersey;JEY;JE;
+Jamaica;JAM;JM;2803362
+Jordan;JOR;JO;7747800
+Japan;JPN;JP;126323715
+Kenya;KEN;KE;47251449
+Kyrgyzstan;KGZ;KG;6033769
+Cambodia;KHM;KH;15827241
+Kiribati;KIR;KI;114405
+Comoros;COM;KM;807118
+Saint Kitts and Nevis;KNA;KN;56183
+Korea, Democratic People's Republic of;PRK;KP;
+Korea, Republic of;KOR;KR;50503933
+Kuwait;KWT;KW;4007146
+Cayman Islands;CYM;KY;60764
+Kazakhstan;KAZ;KZ;17855384
+Lao People's Democratic Republic;LAO;LA;6918367
+Lebanon;LBN;LB;5988153
+Saint Lucia;LCA;LC;186383
+Liechtenstein;LIE;LI;37776
+Sri Lanka;LKA;LK;20810816
+Liberia;LBR;LR;4615222
+Lesotho;LSO;LS;2160309
+Lithuania;LTU;LT;2850030
+Luxembourg;LUX;LU;576243
+Latvia;LVA;LV;1955742
+Libya;LBY;LY;6330159
+Morocco;MAR;MA;34817065
+Monaco;MCO;MC;37863
+Moldova, Republic of;MDA;MD;4062862
+Montenegro;MNE;ME;626101
+Saint Martin (French part);MAF;MF;
+Madagascar;MDG;MG;24915822
+Marshall Islands;MHL;MH;53069
+Macedonia, the former Yugoslav Republic of;MKD;MK;2081012
+Mali;MLI;ML;18134835
+Myanmar;MMR;MM;54363426
+Mongolia;MNG;MN;3006444
+Macao;MAC;MO;597126
+Northern Mariana Islands;MNP;MP;55389
+Martinique;MTQ;MQ;396364
+Mauritania;MRT;MR;4166463
+Montserrat;MSR;MS;5154
+Malta;MLT;MT;419615
+Mauritius;MUS;MU;1277459
+Maldives;MDV;MV;369812
+Malawi;MWI;MW;17749826
+Mexico;MEX;MX;128632004
+Malaysia;MYS;MY;30751602
+Mozambique;MOZ;MZ;28751362
+Namibia;NAM;NA;2513981
+New Caledonia;NCL;NC;266431
+Niger;NER;NE;20715285
+Norfolk Island;NFK;NF;25281327
+Nigeria;NGA;NG;186987563
+Nicaragua;NIC;NI;6150035
+Netherlands;NLD;NL;16979729
+Norway;NOR;NO;5271958
+Nepal;NPL;NP;28850717
+Nauru;NRU;NR;10263
+Niue;NIU;NU;1612
+New Zealand;NZL;NZ;4565185
+Oman;OMN;OM;4654471
+Panama;PAN;PA;3990406
+Peru;PER;PE;31774225
+French Polynesia;PYF;PF;285735
+Papua New Guinea;PNG;PG;
+Philippines;PHL;PH;102250133
+Pakistan;PAK;PK;192826502
+Poland;POL;PL;38593161
+Saint Pierre and Miquelon;SPM;PM;6301
+Pitcairn;PCN;PN;
+Puerto Rico;PRI;PR;3680772
+Palestine, State of;PSE;PS;4797239
+Portugal;PRT;PT;10304434
+Palau;PLW;PW;21501
+Paraguay;PRY;PY;6725430
+Qatar;QAT;QA;2291368
+Reunion;REU;RE;867214
+Romania;ROU;RO;19372734
+Serbia;SRB;RS;8812705
+Russian Federation;RUS;RU;143439832
+Rwanda;RWA;RW;11882766
+Saudi Arabia;SAU;SA;32157974
+Solomon Islands;SLB;SB;594934
+Seychelles;SYC;SC;97026
+Sudan;SDN;SD;41175541
+Sweden;SWE;SE;9851852
+Singapore;SGP;SG;5696506
+Saint Helena, Ascension and Tristan da Cunha;SHN;SH;3956
+Slovenia;SVN;SI;2069362
+Svalbard and Jan Mayen;SJM;SJ;
+Slovakia;SVK;SK;5429418
+Sierra Leone;SLE;SL;6592102
+San Marino;SMR;SM;31950
+Senegal;SEN;SN;15589485
+Somalia;SOM;SO;11079013
+Suriname;SUR;SR;547610
+South Sudan;SSD;SS;12733427
+Sao Tome and Principe;STP;ST;194390
+El Salvador;SLV;SV;6146419
+Sint Maarten (Dutch part);SXM;SX;39538
+Syrian Arab Republic;SYR;SY;18563595
+Swaziland;SWZ;SZ;1304063
+Turks and Caicos Islands;TCA;TC;34904
+Chad;TCD;TD;14496739
+French Southern Territories;ATF;TF;
+Togo;TGO;TG;7496833
+Thailand;THA;TH;68146609
+Tajikistan;TJK;TJ;8669464
+Tokelau;TKL;TK;1276
+Timor-Leste;TLS;TL;1211245
+Turkmenistan;TKM;TM;5438670
+Tunisia;TUN;TN;11375220
+Tonga;TON;TO;106915
+Turkey;TUR;TR;79622062
+Trinidad and Tobago;TTO;TT;1364973
+Tuvalu;TUV;TV;9943
+Taiwan, Province of China;TWN;TW;23395600
+Tanzania, United Republic of;TZA;TZ;55155473
+Ukraine;UKR;UA;44624373
+Uganda;UGA;UG;40322768
+United States Minor Outlying Islands;UMI;UM;
+United States of America;USA;US;324118787
+Uruguay;URY;UY;3444071
+Uzbekistan;UZB;UZ;30300446
+Saint Vincent and the Grenadines;VCT;VC;109644
+Venezuela, Bolivarian Republic of;VEN;VE;31518855
+Virgin Islands, British;VGB;VG;30659
+Virgin Islands, U.S.;VIR;VI;106415
+Viet Nam;VNM;VN;94444200
+Vanuatu;VUT;VU;270470
+Wallis and Futuna;WLF;WF;13112
+Samoa;WSM;WS;194523
+Yemen;YEM;YE;27477600
+Mayotte;MYT;YT;246496
+South Africa;ZAF;ZA;54978907
+Zambia;ZMB;ZM;16717332
+Zimbabwe;ZWE;ZW;15966810
