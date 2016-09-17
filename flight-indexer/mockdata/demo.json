@@ -1,0 +1,20 @@
+{
+	"Quotes": [{
+		"QuoteId": 1,
+		"MinPrice": 548.0,
+		"Direct": false,
+		"OutboundLeg": {
+			"CarrierIds": [954],
+			"OriginId": 40529,
+			"DestinationId": 44622,
+			"DepartureDate": "2016-09-21T00:00:00"
+		},
+		"InboundLeg": {
+			"CarrierIds": [954],
+			"OriginId": 44622,
+			"DestinationId": 40529,
+			"DepartureDate": "2016-09-29T00:00:00"
+		},
+		"QuoteDateTime": "2016-09-15T04:03:00"
+	}]
+}
