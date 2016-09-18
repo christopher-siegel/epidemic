@@ -267,7 +267,7 @@
                         infectionPercentage = sortable[country][1];
                     }
                 }
-                return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Percentage:</td><td>&nbsp;&nbsp;&nbsp;'+infectionPercentage+' %</td></tr></table></div>';
+                return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Percentage:</td><td>&nbsp;&nbsp;&nbsp;'+(infectionPercentage*1).toFixed(4)+' %</td></tr></table></div>';
             }
            },
 
@@ -312,7 +312,7 @@
                         infectionPercentage = sortable[country][1];
                     }
                 }
-                return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Percentage:</td><td>&nbsp;&nbsp;&nbsp;'+infectionPercentage+' %</td></tr></table></div>';
+                return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Percentage:</td><td>&nbsp;&nbsp;&nbsp;'+(infectionPercentage*1).toFixed(4)+' %</td></tr></table></div>';
             }
            },
 
@@ -394,7 +394,7 @@
                 var count = 0;
                 for (country in sortable) {
                     count += 1;
-                    if (count <= 9) {
+                    if (count <= 6) {
                         var infectionScore = Math.round((sortable[country][1] / avaragePercent) * 100);
                         html += "<tr><td>" + (country*1+1) + "</td><td>" + sortable[country][0] + "</td><td class='score-hover'>" + infectionScore + " <span>(" + (sortable[country][1]*1).toFixed(4) + "%)</span>" + "</td></tr>";
                     }
