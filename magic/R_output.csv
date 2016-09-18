@@ -1,4 +1,4 @@
-"country" "week" "infected_number" "infected_percentage"
+"id" "country" "week" "infected_number" "infected_percentage"
 "1" "AFG" 23 63 0.009
 "2" "ALB" 48 65 0.005
 "3" "DZA" 6 25 0.005

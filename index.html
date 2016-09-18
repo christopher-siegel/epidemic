@@ -151,30 +151,11 @@
                                             <tr>
                                                 <th>Rank</th>
                                                 <th>Country</th>
-                                                <th>Infection (in %)</th>
+                                                <th>Infection Rating</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Botswana</td>
-                                                <td>117</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Bangladesh</td>
-                                                <td>115</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Uruguay</td>
-                                                <td>112</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Brazil</td>
-                                                <td>110</td>
-                                            </tr>
+                                        <tbody class="highest-infection">
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -193,12 +174,12 @@
                                     <table class="table table-bordered table-hover table-striped" style="margin-bottom: 0px;">
                                         <tbody>
                                             <tr>
-                                                <td id="red0">0</td>
-                                                <td id="red20">20</td>
-                                                <td id="red40">40</td>
-                                                <td id="red60">60</td>
-                                                <td id="red80">80</td>
-                                                <td id="red100">100</td>
+                                                <td id="red0">low</td>
+                                                <td id="red20"></td>
+                                                <td id="red40"></td>
+                                                <td id="red60"></td>
+                                                <td id="red80"></td>
+                                                <td id="red100">high</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -270,36 +251,32 @@
             gt50: 'red'
           },
            geographyConfig: {
+            dataUrl: null,
             borderWidth: 1,
             borderOpacity: 1,
             borderColor: '#999',
-            highlightFillColor: 'rgb(4,170,4)',
+            highlightFillColor: '#aaa',
+            highlightBorderColor: '#aaa',
             popupTemplate: function(geography, data) { // This function should just return a string
-              return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Population:</td><td> 0.04%</td></tr><tr><td>Infected:</td><td> 2130</td></tr><tr><td>Growth:</td><td> 15%</td></tr></div>';
+                var infectionPercentage = 0;
+                for (country in sortable) {
+                    if (sortable[country][0] == geography.id) {
+                        infectionPercentage = sortable[country][1];
+                    }
+                }
+                return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Percentage:</td><td>&nbsp;&nbsp;&nbsp;'+infectionPercentage+' %</td></tr></table></div>';
             }
            },
 
           data: {
-          //   USA: {fillKey: 'lt50' },
-          //   RUS: {fillKey: 'lt50' },
-          //   CAN: {fillKey: 'lt50' },
-          //   BRA: {fillKey: 'gt50' },
-          //   ARG: {fillKey: 'gt50' },
-          //   COL: {fillKey: 'gt50' },
-          //   AUS: {fillKey: 'gt50' },
-          //   ZAF: {fillKey: 'gt50' },
-          //   MAD: {fillKey: 'gt50' }
-          },
 
-          blub: function() {
-            console.log("hello");
-            return "hello";
-          }
+          },
         })
 
         $( document ).ready(function() {
 
         var handle = $( "#custom-handle" );
+
         $( "#slider" ).slider({
             min: 1,
             max: 2,
@@ -329,6 +306,14 @@
 
           console.log(firebase);
 
+             function compare(a,b) {
+              if (a.last_nom < b.last_nom)
+                return -1;
+              if (a.last_nom > b.last_nom)
+                return 1;
+              return 0;
+            }
+
           function updateMap(year, week) {
               var ref = firebase.database().ref().child("infections").child("y"+year+"w"+week);
               // Attach an asynchronous callback to read the data at our posts reference
@@ -336,12 +321,27 @@
                 var infectionDataByCountryCode = snapshot.val();
                 var highestPercent = 0; // yes this is correct!!
 
-                for (country in infectionDataByCountryCode) {
-                    var percent = infectionDataByCountryCode[country].percent;
-                    if ( percent > highestPercent ) {
-                        highestPercent = percent
-                    }
+                // var orderedArray = infectionDataByCountryCode.sort(compare);
+                sortable = [];
+                var sumPercent = 0;
+                var numberOfEntries = 0;
+                for (var country in infectionDataByCountryCode) {
+                      sortable.push([country, infectionDataByCountryCode[country].percent]);
+                      sumPercent += infectionDataByCountryCode[country].percent;
+                      numberOfEntries += 1;
                 }
+                sortable.sort(
+                    function(a, b) {
+                        return b[1] - a[1];
+                    }
+                )
+                var html = "";
+                var avaragePercent = sumPercent / numberOfEntries;
+                for (country in sortable) {
+                    var infectionScore = Math.round((sortable[country][1] / avaragePercent) * 100);
+                    html += "<tr><td>" + (country*1+1) + "</td><td>" + sortable[country][0] + "</td><td>" + infectionScore + "</td></tr>";
+                }
+                $('.highest-infection').html(html);
                 for (country in infectionDataByCountryCode) {
                     var percent = infectionDataByCountryCode[country].percent;
                     var update = '{"' + country + '" : "rgba(255,0,0,'+ percent +')"}';
