@@ -290,6 +290,7 @@ state
 #===================================
 # extract prediction
 #===================================
+options(scipen = 999)
 country_num = countries$node_number
 #week = c((n_t+1):(n_t+n_t_predict))
 week = c(1:(n_t+n_t_predict))
@@ -317,5 +318,4 @@ for (i in 1:nrow(output)){
   }
 }
 
-
-write.table(output, file = "/Users/semenova/Dropbox/HackZurich2016/comm/epidemic/magic/R_output.csv")
+write.table(output, file = "/Users/semenova/Dropbox/HackZurich2016/comm/epidemic/magic/R_output2.csv")
