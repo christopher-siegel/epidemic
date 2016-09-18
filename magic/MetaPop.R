@@ -139,24 +139,22 @@ read_data <- function(){
   }
   
   
-  F<-array(0,dim=c(n_nodes,n_nodes,n_t))
+  #F<-array(0,dim=c(n_nodes,n_nodes,n_t+n_t_predict))
   
+  #for (i in 1:nrow(flights)){
+  #  node_from <- flights$node_from[i]
+  #  node_to <- flights$node_to[i]
+  #  t <- flights$time_stamp[i]
+  #  F[node_from, node_to, t] <- flights$passengers[i]
+  #}
+  
+  F<-array(0,dim=c(n_nodes,n_nodes))
   for (i in 1:nrow(flights)){
     node_from <- flights$node_from[i]
     node_to <- flights$node_to[i]
-    t <- flights$time_stamp[i]
-    F[node_from, node_to, t] <- flights$passengers[i]
+    F[node_from, node_to] <- flights$passengers[i]
   }
-
-  for (i in 1:n_nodes){
-    for (j in 1:n_nodes){
-      for (k in 1:n_t){
-        F[i,j,k] <- sample(50,1,replace = TRUE)
-      } 
-    }
-  }
-  sum(is.na(F))
-  
+ 
 }
 
 
@@ -174,10 +172,8 @@ create_node <- function() {
   #i_m: susceptible modelled
   #n_m: susceptible modelled
   #i_o: infected observed
-  #list(s_m=rep(NA,n_t), s_m=rep(NA,n_t), s_m=rep(NA,n_t), s_o=rep(NA,n_t))
-  #data.frame(s_m=rep(1,n_t), i_m=rep(1,n_t), n_m=rep(1,n_t), i_o=rep(NA,n_t))
-  data.frame(s_m=rep(0,n_t), i_m=rep(0,n_t), n_m=rep(0,n_t), i_o=rep(0,n_t), t=c(min(infections$time_stamp):max(infections$time_stamp)))
-  #data.frame(s_m=c(min(infections$time_stamp):max(infections$time_stamp)), i_m=rep(1,n_t), n_m=rep(1,n_t), i_o=rep(NA,n_t))
+  #data.frame(s_m=rep(0,n_t+n_t_predict), i_m=rep(0,n_t+n_t_predict), n_m=rep(0,n_t+n_t_predict), i_o=rep(0,n_t+n_t_predict), t=c(min(infections$time_stamp):max(infections$time_stamp)))
+  data.frame(s_m=rep(0,n_t+n_t_predict), i_m=rep(0,n_t+n_t_predict), n_m=rep(0,n_t+n_t_predict), i_o=rep(0,n_t+n_t_predict), t=c(1:(n_t+n_t_predict)))  
 }
 
 state1 <- replicate(n_nodes, create_node(), simplify=FALSE)
@@ -220,24 +216,23 @@ update_state <- function(state, t, F, alpha, beta){
      #j - node
      #t - time instance 
     
-    state[[j]]$n_m[t] <-  state[[j]]$n_m[t-1] + sum(F[,j,t-1]) - sum(F[j,,t-1])
+    #state[[j]]$n_m[t] <-  state[[j]]$n_m[t-1] + sum(F[,j,t-1]) - sum(F[j,,t-1])
+    state[[j]]$n_m[t] <-  state[[j]]$n_m[t-1] + sum(F[,j]) - sum(F[j,])
     
     help_sum <- 0
     for (k in 1:n_nodes){
-       help_sum <- help_sum + F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1]
-       #print(paste(k, ' ',F[k,j,t-1]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1],' ',help_sum, sep=''))
+       help_sum <- help_sum + F[k,j]*state[[k]]$i_m[t-1]/state[[k]]$n_m[t-1]
     }
-    #help_sum
     
    state[[j]]$i_m[t] <- state[[j]]$i_m[t-1]+
                         alpha* state[[j]]$s_m[t-1]/state[[j]]$n_m[t-1]*(state[[j]]$i_m[t-1]+help_sum) -
                         beta * state[[j]]$i_m[t-1] - 
-                        sum(F[j,,t-1])*state[[j]]$i_m[t-1]/state[[j]]$n_m[t-1]
+                        sum(F[j,])*state[[j]]$i_m[t-1]/state[[j]]$n_m[t-1]
 
    state[[j]]$s_m[t] <- state[[j]]$s_m[t-1]-
                         alpha* state[[j]]$s_m[t-1]/state[[j]]$n_m[t-1]*(state[[j]]$i_m[t-1]+help_sum) +
                         beta * state[[j]]$i_m[t-1] -
-                        sum(F[j,,t-1])*state[[j]]$s_m[t-1]/state[[j]]$n_m[t-1]
+                        sum(F[j,])*state[[j]]$s_m[t-1]/state[[j]]$n_m[t-1]
   
   state[[j]]$n_m[t]  <- max(state[[j]]$n_m[t], 0)
   state[[j]]$i_m[t]  <- max(state[[j]]$i_m[t], 0)
@@ -246,8 +241,8 @@ update_state <- function(state, t, F, alpha, beta){
   return(state)
 }
 
-state <- update_state(state1, t = 2, F, alpha = 1e-06, beta = 1e-06)
-state
+#state <- update_state(state1, t = 2, F, alpha = 1e-06, beta = 1e-06)
+#state
 
 #===================================
 # compute parameters on the grid
@@ -262,7 +257,7 @@ param_grid$score <- rep(NA,length.out)
 cost_function <- function(state1, alpha, beta){
   #starting from state1 update according to the dynamics
   state <- state1
-  for (t in 2:n_t){
+  for (t in 2:(n_t+n_t_predict)){
     state <- update_state(state, t, F, alpha, beta)
   }
   
@@ -284,10 +279,43 @@ beta_opt <- param_grid$beta[which(param_grid$score == min(param_grid$score))]
 alpha_opt
 beta_opt
 
+cost_function(state1, alpha= alpha_opt, beta = beta_opt)
+
+state <- state1
+for (t in 2:(n_t+n_t_predict)){
+  state <- update_state(state, t, F, alpha= alpha_opt, beta = beta_opt)
+}
+
+state
 #===================================
-# prediction
+# extract prediction
 #===================================
+country_num = countries$node_number
+#week = c((n_t+1):(n_t+n_t_predict))
+week = c(1:(n_t+n_t_predict))
+
+output <- expand.grid(country_num, week)
+names(output) <- c('country_num','week')
+output$infected_number <- rep(NA, nrow(output))
+output$infected_percentage <- rep(NA, nrow(output))
+output$infected_percentage <- rep(NA, nrow(output))
+output$code <- rep(NA, nrow(output))
+
+#output <- data.frame(country = rep(NA, nro), week= sample(NA,20, replace=T), infected_number= sample(100,20, replace=T), infected_percentage= sample(10,20, replace=T)/1000)
 
 
-output <- data.frame(country = c(countries$code[1:20]), week= sample(52,20, replace=T), infected_number= sample(100,20, replace=T), infected_percentage= sample(10,20, replace=T)/1000)
+for (i in 1:nrow(output)){
+    node_num <- output$country[i]
+    t <- output$week[i]
+    output$infected_number[i] <-  state[[node_num]]$i_m[t]
+    output$infected_percentage[i] <-  state[[node_num]]$i_m[t]/state[[node_num]]$n_m[t]*100   
+}
+
+for (i in 1:nrow(output)){
+  for (j in 1:nrow(countries)){
+    if (output$country_num[i]==countries$node_number[j])  output$code[i] <- countries$code[j]
+  }
+}
+
+
 write.table(output, file = "/Users/semenova/Dropbox/HackZurich2016/comm/epidemic/magic/R_output.csv")
