@@ -318,4 +318,7 @@ for (i in 1:nrow(output)){
   }
 }
 
+output1 <- data.frame(output$code, output$week, output$infected_number, output$infected_percentage)
+output <- output1
+names(output) <- c('country','week','infected_number','infected_percentage')
 write.table(output, file = "/Users/semenova/Dropbox/HackZurich2016/comm/epidemic/magic/R_output2.csv")
