@@ -214,6 +214,12 @@
                       <div class="panel panel-default">
                         <div class="panel-heading">
                           <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Timespan Selector</h3>
+                          <select style="position: absolute; right: 28px; top: 11px;">
+                              <option>2014</option>
+                              <option>2015</option>
+                              <option selected>2016</option>
+                              <option>2017</option>
+                          </select>
                         </div>
                         <div class="panel-body" style="height: 50px; padding-left: 30px; padding-right: 120px; padding-top: 30px; padding-bottom: 45px;">
                           <div id="slider">
@@ -334,7 +340,7 @@
               handle.text( $( this ).slider( "value" ) );
             },
             slide: function( event, ui ) {
-              handle.text( "W " + ui.value );
+              handle.text( "Week " + ui.value );
               updateMap(2016, ui.value);
             }
           });

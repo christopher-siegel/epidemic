@@ -31,11 +31,18 @@
     overflow: hidden;
 }
 
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #d3d3d3;
+    background: #fe5a5a;
+    font-weight: normal;
+    color: #fff;
+}
 
 #custom-handle {
-    width: 70px;
+    width: 80px;
     padding: 5px;
     height: 30px;
+    text-align: center;
 }
 
 #red0 {
