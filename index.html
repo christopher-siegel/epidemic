@@ -122,11 +122,13 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                                <button onClick="javascript:$('.nop').toggleClass('hidden');" class="btn btn-default btn-xs" style="position:absolute; right: 26px; top:9px;">zoom</button>
                             </div>
                             <div class="panel-body">
                                 <!-- <div id="morris-area-chart"> -->
                                   <!-- <div class="container"> -->
-                                    <div id="container1"></div>
+                                    <div id="container1" class="nop"></div>
+                                    <div id="container2" class="nop hidden"></div>
 
                                   <!-- </div> -->
                                 <!-- </div> -->
@@ -190,14 +192,14 @@
 
                         <!-- beginning of certainty score -->
 
-                        <div class="panel panel-default">
+                        <!-- <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Estimated Prediction Accuracy</h3>
                             </div>
                             <div class="panel-body">
                                 <p>The estimated accuracy of this prediction is XX%</p>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- end of certainty score-->
 
@@ -244,6 +246,7 @@
           scope: 'world',
           element: document.getElementById('container1'),
           projection: 'mercator',
+          responsive: true,
           height: 500,
           fills: {
             defaultFill: '#ccc',
@@ -273,19 +276,66 @@
           },
         })
 
+        var map2 = new Datamap({
+          scope: 'world',
+          element: document.getElementById('container2'),
+          projection: 'mercator',
+          responsive: true,
+          height: 500,
+          fills: {
+            defaultFill: '#ccc',
+            lt50: 'rgba(0,244,244,0.9)',
+            gt50: 'red'
+          },
+          setProjection: function(element) {
+            var projection = d3.geo.equirectangular()
+              .center([-20, 75])
+              .rotate([0, -10])
+              .scale(700)
+              .translate([element.offsetWidth / 2, element.offsetHeight / 2]);
+            var path = d3.geo.path()
+              .projection(projection);
+
+            return {path: path, projection: projection};
+          },
+           geographyConfig: {
+            dataUrl: null,
+            borderWidth: 1,
+            borderOpacity: 1,
+            borderColor: '#999',
+            highlightFillColor: '#aaa',
+            highlightBorderColor: '#aaa',
+            popupTemplate: function(geography, data) { // This function should just return a string
+                var infectionPercentage = 0;
+                for (country in sortable) {
+                    if (sortable[country][0] == geography.id) {
+                        infectionPercentage = sortable[country][1];
+                    }
+                }
+                return '<div class="hoverinfo"><strong>' + geography.properties.name + '</strong><br><table><tr><td>Infection Percentage:</td><td>&nbsp;&nbsp;&nbsp;'+infectionPercentage+' %</td></tr></table></div>';
+            }
+           },
+
+          data: {
+
+          },
+        })
+
+
+
         $( document ).ready(function() {
 
         var handle = $( "#custom-handle" );
 
         $( "#slider" ).slider({
             min: 1,
-            max: 2,
+            max: 52,
             create: function() {
               handle.text( $( this ).slider( "value" ) );
             },
             slide: function( event, ui ) {
               handle.text( "W " + ui.value );
-              updateMap(2001, ui.value);
+              updateMap(2016, ui.value);
             }
           });
         });
@@ -315,6 +365,7 @@
             }
 
           function updateMap(year, week) {
+              console.log('requested firebase key: ' + "y"+year+"w"+week);
               var ref = firebase.database().ref().child("infections").child("y"+year+"w"+week);
               // Attach an asynchronous callback to read the data at our posts reference
               ref.on("value", function(snapshot) {
@@ -327,7 +378,10 @@
                 var numberOfEntries = 0;
                 for (var country in infectionDataByCountryCode) {
                       sortable.push([country, infectionDataByCountryCode[country].percent]);
-                      sumPercent += infectionDataByCountryCode[country].percent;
+                      sumPercent += infectionDataByCountryCode[country].percent*1;
+                      if ((infectionDataByCountryCode[country].percent*1) > highestPercent) {
+                          highestPercent = infectionDataByCountryCode[country].percent*1;
+                      }
                       numberOfEntries += 1;
                 }
                 sortable.sort(
@@ -337,16 +391,58 @@
                 )
                 var html = "";
                 var avaragePercent = sumPercent / numberOfEntries;
+                var count = 0;
                 for (country in sortable) {
-                    var infectionScore = Math.round((sortable[country][1] / avaragePercent) * 100);
-                    html += "<tr><td>" + (country*1+1) + "</td><td>" + sortable[country][0] + "</td><td>" + infectionScore + "</td></tr>";
+                    count += 1;
+                    if (count <= 9) {
+                        var infectionScore = Math.round((sortable[country][1] / avaragePercent) * 100);
+                        html += "<tr><td>" + (country*1+1) + "</td><td>" + sortable[country][0] + "</td><td class='score-hover'>" + infectionScore + " <span>(" + (sortable[country][1]*1).toFixed(4) + "%)</span>" + "</td></tr>";
+                    }
                 }
                 $('.highest-infection').html(html);
                 for (country in infectionDataByCountryCode) {
                     var percent = infectionDataByCountryCode[country].percent;
-                    var update = '{"' + country + '" : "rgba(255,0,0,'+ percent +')"}';
+                    // console.log((percent *1000*2));
+                    // console.log(percent / highestPercent);
+                    // console.log(Math.pow(Math.E, (-1 * (percent / highestPercent) )));
+                    var desizer = Math.pow(7, (-1 * (percent / highestPercent) ));
+                    var alpha = (percent / highestPercent) * desizer ;
+                    // var staticColor = '#ccc';
+                    //
+                    // if (country == "NOR") {
+                    //     console.log('------ NORWAY ------');
+                    //     console.log(percent);
+                    //     console.log(alpha);
+                    // }
+                    //
+                    // if (alpha <= 0.1) {
+                    //     staticColor = '#00ff0c';
+                    // } else if (alpha <= 0.2) {
+                    //     staticColor = '#00b008';
+                    // } else if (alpha <= 0.3) {
+                    //     staticColor = '#007c06';
+                    // } else if (alpha <= 0.4) {
+                    //     staticColor = '#fff600';
+                    // } else if (alpha <= 0.5) {
+                    //     staticColor = '#cdc600';
+                    // } else if (alpha <= 0.6) {
+                    //     staticColor = '#817d05';
+                    // } else if (alpha <= 0.7) {
+                    //     staticColor = '#fea100';
+                    // } else if (alpha <= 0.8) {
+                    //     staticColor = '#c98002';
+                    // } else if (alpha <= 0.9) {
+                    //     staticColor = '#923903';
+                    // } else if (alpha <= 1) {
+                    //     staticColor = '#ff0000';
+                    // }
+
+                    // var update = '{"' + country + '" : "'+staticColor+'"}';
+                    // var update = '{"' + country + '" : "rgba(255,0,0,'+ (percent / highestPercent) * desizer * 6 +')"}';
+                    var update = '{"' + country + '" : "rgba(255,0,0,'+ (percent / highestPercent) +')"}';
                     update = JSON.parse(update);
                     map.updateChoropleth(update);
+                    map2.updateChoropleth(update);
                 }
               }, function (errorObject) {
                 console.log("The read failed: " + errorObject.code);
@@ -355,7 +451,7 @@
 
             $( document ).ready(function() {
               // Initital call to Database
-              updateMap(2001, 1);
+              updateMap(2016, 1);
 
             });
         </script>

@@ -2,7 +2,33 @@
 #container1 {
     position: relative;
     width: 100%;
-    margin: 0px auto;
+    height: auto;
+    left: auto;
+    top: auto;
+}
+
+#container1 svg {
+    padding-top: 0px;
+}
+
+.toggle-norway#container1 svg {
+    /*margin-top: -100px;*/
+    /*height: 20%;*/
+    width: 200% !important;
+    height: 200% !important;
+}
+.toggle-norway#container1 {
+    position: relative;
+    width: 200% !important;
+    height: 50% !important;
+    left: -600px !important;
+    /*top:-200px !important;*/
+    /*padding-bottom: 200px !important;*/
+    /*height: 500px;*/
+}
+
+.panel-body {
+    overflow: hidden;
 }
 
 
@@ -49,6 +75,12 @@
   width: 18%;
   font-weight: bold;
   color: white;
+}
+.score-hover span {
+    display: none;
+}
+.score-hover:hover span {
+    display: inline;
 }
 
 /*!
